@@ -1,0 +1,79 @@
+from sys import exit
+
+def camp():
+	print "How many nights do you want to camp out?"
+	
+	next = raw_input(">")
+	how_much = int(next)
+	if how_much < 3:
+		print "A ranger saw you and assist you back to civilian life.  Congrats! You survived."
+	elif next > 5:
+		dead("You ran out of food and starved to death.")
+	else:
+		print "Enter a number. Try again."
+		camp()
+		
+def bear():
+	print "There is a bear here."
+	print "The bear roar at you."
+	print "Do you run the other way, lay down in the fetish position, or fight the bear?"
+	
+	next = raw_input(">")
+	if next == "fight":
+		dead("The bear gets pissed off and chews your leg off.")
+	elif next == "fetish":
+		print "The bear walked off.  You are safe."
+		exit (0)
+	else:
+		dead("You fell into the quicksand.  You drown slowly.")
+			
+def cabin():
+	print "This looks like cabin in the woods, the scary movie."
+	print "You knock the door.  No one answer.  Knock again?" #answer allowed to this 
+	#question is yes or no below.  If yes, knock or run.
+	knock = False
+	
+	while True:
+	#stuck in while loop still
+	
+		next = raw_input(">")
+		if next == "no": 
+			print "You hear something walking closer behind you."
+			print "Before you can turn around.  It was too late.  You Screamed!"
+			exit(0)
+		elif next == "yes" and not knock:
+			print "No one answers, what do you do?"
+			knock = True
+		elif next == "knock" and knock:
+			print "The door creak open; you walk into the darkness..."
+			print "Someone or something grabbed your shoulder.  You turn around..."
+		elif next == "run" and knock:
+			bear()
+		else: #if type others besides yes or no, end with the following.
+			print "I don't know what that means."
+		#exit(0) #if no exit, this will continue in the while loop forever
+
+	
+		
+def dead(why):
+	print why, "Good job!"
+	exit(0)
+	
+def start():
+	print "You are in the woods."
+	print "There is a path to the right, middle, and the left"
+	print "Which one do you take?"
+	
+	next = raw_input(">")
+	
+	if next == "right":
+		bear()
+	elif next == "middle":
+		cabin()
+	elif next == "left":
+		camp()
+	else:
+		print "I don't understand.  Choose again."
+		start()
+		
+start()
